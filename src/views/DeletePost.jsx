@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export default function DeletePost(loggedIn, flashMessage) {
+export default function DeletePost({loggedIn, flashMessage}) {
     
     
     const params = useParams();
@@ -28,19 +28,13 @@ export default function DeletePost(loggedIn, flashMessage) {
         }
     })
 
-    async function handleSubmit(e){
-        e.preventDefault();
-
-        // Get the data from the form
-        let title = e.target.title.value;
-        let content = e.target.body.value;
-
+    async function handleSubmit(){
+      
         // Get the token from localStorage
         let token = localStorage.getItem('token');
 
         // Set up the request headers
         let myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
         myHeaders.append('Authorization', `Bearer ${token}`);
 
 
@@ -69,15 +63,12 @@ export default function DeletePost(loggedIn, flashMessage) {
                     <div className="card-body">
                         <h5 className="card-title">{ post.title }</h5>
                         <p className="card-text">{ post.content }</p>
-                        <Link className='btn btn-outline-primary' to={`/`}>Never Mind, Let's Go Home</Link>
+                        <Link className='btn btn-outline-primary me-3' to={`/`}>Never Mind, Let's Go Home</Link>
+                        <button className='btn btn-outline-danger' onClick = {handleSubmit}>Delete</button>
                     </div>
 
                 </div>
-                    <form action="" onSubmit={handleSubmit}>
-                        <div className="form-group mt-3">
-                            <input type="submit" value="Delete Post" className='btn btn-outline-danger w-25' />
-                        </div>
-                    </form>
+                    
                 </div>
         </>
     )

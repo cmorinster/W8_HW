@@ -33,7 +33,7 @@ export default function Register({ flashMessage }) {
                 .then(res => res.json())
                 .then(data => {
                     if (data.error){
-                        flashMessage(data.error, 'danger');
+                        //flashMessage(data.error, 'danger');
                     } else {
                         flashMessage(`${data.username} has been created`, 'success');
                         navigate('/');

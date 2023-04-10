@@ -33,7 +33,7 @@ export default function Login({ flashMessage, logUserIn }) {
 
             // Store the value in local storage on the browser
             localStorage.setItem('token', token);
-            //localStorage.setItem('tokenExp', expiration);
+            localStorage.setItem('tokenExp', expiration);
 
             // Change the state of loggedIn to true
             logUserIn(true);

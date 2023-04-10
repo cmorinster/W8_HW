@@ -22,6 +22,7 @@ function App() {
         setCategory(category);
     };
 
+
     function logUserOut(){
         setLoggedIn(false);
         localStorage.removeItem('token');

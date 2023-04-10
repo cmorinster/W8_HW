@@ -37,11 +37,11 @@ export default function PostCard({ post, loggedIn }) {
                         <h5 className="card-title">{ post.title }</h5>
                         <h6 className="card-subtitle">By: { post.author.username }</h6>
                         <p className="card-text">{ post.content }</p>
-                        <Link className='btn btn-outline-info' to={`/posts/${post.id}`}>See More</Link>
-                        {me.username == post.author.username ? (
+                        <Link className='btn btn-outline-info me-2' to={`/posts/${post.id}`}>See More</Link>
+                        {(loggedIn && me.username == post.author.username) ? (
                         <>
-                        <Link className='btn btn-outline-success' to={`/posts/${post.id}/Edit`}>Edit</Link>
-                        <Link className='btn btn-outline-danger' to={`/posts/${post.id}/Delete`}>Delete</Link>
+                        <Link className='btn btn-outline-success me-2' to={`/posts/${post.id}/Edit`}>Edit</Link>
+                        <Link className='btn btn-outline-danger me-2' to={`/posts/${post.id}/Delete`}>Delete</Link>
                         </>
                         ) : (
                         <>
