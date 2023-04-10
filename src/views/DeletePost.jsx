@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function DeletePost(loggedIn, flashMessage) {
     
@@ -62,14 +63,22 @@ export default function DeletePost(loggedIn, flashMessage) {
 
     return (
         <>
-            <h3 className="text-center">Delete A Post!</h3>
-            <form action="" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <input type="text" name="title" className="form-control my-3" value={post.title} />
-                    <textarea name="body" className="form-control my-3" value={post.content}  />
-                    <input type="submit" value="Delete Post" className='btn btn-success w-100' />
+            <h3 className="text-center">Would you like to Delete This Post?</h3>
+                <div className="col-md-8">
+                <div className="card mt-3">
+                    <div className="card-body">
+                        <h5 className="card-title">{ post.title }</h5>
+                        <p className="card-text">{ post.content }</p>
+                        <Link className='btn btn-outline-primary' to={`/`}>Never Mind, Let's Go Home</Link>
+                    </div>
+
                 </div>
-            </form>
+                    <form action="" onSubmit={handleSubmit}>
+                        <div className="form-group mt-3">
+                            <input type="submit" value="Delete Post" className='btn btn-outline-danger w-25' />
+                        </div>
+                    </form>
+                </div>
         </>
     )
 }

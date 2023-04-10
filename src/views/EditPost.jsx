@@ -7,6 +7,8 @@ export default function EditPost({ loggedIn, flashMessage }) {
     const params = useParams();
 
     const [post, setPost] = useState({});
+    const [title, setTitle] = useState({});
+    const [content, setContent] = useState({});
 
     useEffect(() => {
         fetch(`https://kekambas-blog-api.onrender.com/api/posts/${params.postId}`)
@@ -14,6 +16,8 @@ export default function EditPost({ loggedIn, flashMessage }) {
             .then(data => {
                 console.log(data);
                 setPost(data);
+                setTitle(data.title)
+                setContent(data.content)
             })
     }, [params.postId])
 
@@ -61,13 +65,21 @@ export default function EditPost({ loggedIn, flashMessage }) {
         };
     };
 
+    function handleTitleChange(e){
+        setTitle(e.target.value)
+    }
+
+    function handleContentChange(e){
+        setContent(e.target.value)
+    }
+
     return (
         <>
             <h3 className="text-center">Edit A Post!</h3>
             <form action="" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <input type="text" name="title" className="form-control my-3" />
-                    <textarea name="body" className="form-control my-3" />
+                    <input type="text" name="title" className="form-control my-3" value={title} onChange ={handleTitleChange} />
+                    <textarea name="body" className="form-control my-3" value={content} onChange ={handleContentChange} />
                     <input type="submit" value="Edit Post" className='btn btn-success w-100' />
                 </div>
             </form>
